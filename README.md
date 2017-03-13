@@ -1,0 +1,2 @@
+# algorithms
+The Algorithm Design Manual - Steven S. Skiena
