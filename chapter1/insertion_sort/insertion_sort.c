@@ -40,6 +40,7 @@ StringVector read_input_file(char *file_name) {
 	int vector_add_status = EXIT_SUCCESS;
 
 	while ((fgets(buffer, __LINE_SIZE_, fp) != NULL) && (vector_add_status == EXIT_SUCCESS)) {
+		strtok(buffer, "\n");
 		vector_add_status = string_vector_add(string_vector, buffer);
 	}
 
