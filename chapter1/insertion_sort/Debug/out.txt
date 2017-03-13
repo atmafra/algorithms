@@ -1,0 +1,3 @@
+Reading file '../words_shuffle.txt'
+Read 100000 lines
+Sorting 100000 elements
