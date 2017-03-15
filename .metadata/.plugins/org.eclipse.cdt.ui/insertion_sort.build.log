@@ -1,0 +1,6 @@
+20:53:13 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j7 all 
+make: Nothing to be done for `all'.
+
+20:53:13 Build Finished (took 71ms)
+

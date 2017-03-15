@@ -1,0 +1,36 @@
+/*
+ * string_vector_large.c
+ *
+ *  Created on: 14 de mar de 2017
+ *      Author: alexandre.mafra
+ */
+#include <stdio.h>
+#include <errno.h>
+#include "string_vector_large.h"
+
+/*
+ * Creates a new StringVectorLarge
+ */
+StringVectorLarge string_vector_large_create() {
+
+	StringVectorLarge string_vector_large = (StringVectorLarge) malloc(
+			sizeof(StringVectorLarge));
+
+	if (string_vector_large == NULL) {
+		fprintf(stderr, "Error allocating large string vector: %s\n",
+				strerror(errno));
+		return NULL;
+	}
+
+	string_vector_large->num_elements = 0;
+	string_vector_large->size = __MEM_BLOCK_SIZE_START_ * __NUM_BLOCKS_START_;
+	string_vector_large->blocks = (StringVector*) calloc(sizeof(StringVector*),
+			__NUM_BLOCKS_START_);
+
+	if (string_vector_large->blocks == NULL) {
+		fprintf(stderr, "Error allocating large string vector blocks: %s\n", strerror(errno));
+		return NULL;
+	}
+
+	return string_vector_large;
+}

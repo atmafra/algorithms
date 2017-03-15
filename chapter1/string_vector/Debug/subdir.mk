@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../string_vector.c 
+../string_vector.c \
+../string_vector_large.c 
 
 OBJS += \
-./string_vector.o 
+./string_vector.o \
+./string_vector_large.o 
 
 C_DEPS += \
-./string_vector.d 
+./string_vector.d \
+./string_vector_large.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

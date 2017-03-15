@@ -34,17 +34,22 @@ StringVector read_input_file(char *file_name) {
 		return NULL;
 	}
 
-	StringVector string_vector = string_vector_create(__MAX_LINES_);
+	StringVector string_vector = string_vector_create();
 
 	char buffer[__LINE_SIZE_];
 	int vector_add_status = EXIT_SUCCESS;
 
 	while ((fgets(buffer, __LINE_SIZE_, fp) != NULL) && (vector_add_status == EXIT_SUCCESS)) {
 		strtok(buffer, "\n");
-		vector_add_status = string_vector_add(string_vector, buffer);
+		if (string_vector_add(string_vector, buffer) != EXIT_SUCCESS) {
+			fprintf(stderr, "Error adding element '%s' to string vector\n", buffer);
+			string_vector_free(string_vector);
+			fclose(fp);
+			return NULL;
+		}
 	}
 
-	printf("Read %d lines\n", string_vector->numElements);
+	printf("Read %d lines\n", string_vector->num_elements);
 	fclose(fp);
 
 	return string_vector;
@@ -63,12 +68,16 @@ int main(int argc, char *argv[]) {
 	}
 
 	StringVector string_vector = read_input_file(argv[1]);
-	int num_elements = string_vector->numElements;
+	if (!string_vector) {
+		fprintf(stderr, "Error reading file '%s'\n", filename);
+		exit(EXIT_FAILURE);
+	}
+	unsigned num_elements = string_vector->num_elements;
 
 	/* insertion sort */
 	printf("Sorting %d elements\n", num_elements);
 	fflush(stdout);
-	int i, j;
+	unsigned i, j;
 
 	for (i = 1; i < num_elements; i++) {
 

@@ -1,0 +1,60 @@
+20:22:32 **** Build of configuration Debug for project string_vector ****
+make all 
+make: Nothing to be done for `all'.
+20:22:32 **** Incremental Build of configuration Debug for project string_vector ****
+make all 
+make: Nothing to be done for `all'.
+20:22:32 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j7 all 
+make: Nothing to be done for `all'.
+20:22:46 **** Clean-only build of configuration Debug for project string_vector ****
+make clean 
+rm -rf  ./string_vector.o ./string_vector_large.o  ./string_vector.d ./string_vector_large.d  libstring_vector.so
+ 
+20:22:46 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j7 all 
+make: Nothing to be done for `all'.
+20:45:10 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j7 all 
+make: Nothing to be done for `all'.
+20:52:16 **** Build of configuration Debug for project string_vector ****
+make all 
+Building file: ../string_vector.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -O3 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"string_vector.d" -MT"string_vector.o" -o "string_vector.o" "../string_vector.c"
+Finished building: ../string_vector.c
+ 
+Building file: ../string_vector_large.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -O3 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"string_vector_large.d" -MT"string_vector_large.o" -o "string_vector_large.o" "../string_vector_large.c"
+../string_vector_large.c:22:5: warning: implicitly declaring library function 'strerror' with type 'char *(int)' [-Wimplicit-function-declaration]
+                                strerror(errno));
+                                ^
+../string_vector_large.c:22:5: note: include the header <string.h> or explicitly provide a declaration for 'strerror'
+../string_vector_large.c:50:33: error: expected expression
+        unsigned new_size = cur_size + ;
+                                       ^
+../string_vector_large.c:59:43: error: use of undeclared identifier 'string_vector'
+        string_vector->vector = (char**) realloc(string_vector->vector,
+                                                 ^
+../string_vector_large.c:59:2: error: use of undeclared identifier 'string_vector'
+        string_vector->vector = (char**) realloc(string_vector->vector,
+        ^
+../string_vector_large.c:61:6: error: use of undeclared identifier 'string_vector'
+        if (string_vector->vector == NULL) {
+            ^
+../string_vector_large.c:67:2: error: use of undeclared identifier 'string_vector'
+        string_vector->size = new_size;
+        ^
+../string_vector_large.c:89:78: error: expected expression
+                string_vector_large->blocks = (StringVector*) realloc(string_vector_large, )
+                                                                                           ^
+1 warning and 6 errors generated.
+make: *** [string_vector_large.o] Error 1
+20:53:13 **** Clean-only build of configuration Debug for project string_vector ****
+make clean 
+rm -rf  ./string_vector.o ./string_vector_large.o  ./string_vector.d ./string_vector_large.d  libstring_vector.so
+ 
+20:53:13 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j7 all 
+make: Nothing to be done for `all'.
