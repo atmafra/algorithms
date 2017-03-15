@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <stdbool.h>
 #include "string_vector.h"
 
 /*
@@ -26,7 +27,7 @@ StringVector string_vector_create() {
 	string_vector->num_elements = 0;
 	string_vector->size = __MEM_BLOCK_SIZE_START_;
 	string_vector->vector = (char**) calloc(sizeof(char*),
-			__MEM_BLOCK_SIZE_START_);
+	__MEM_BLOCK_SIZE_START_);
 
 	if (string_vector->vector == NULL) {
 		fprintf(stderr, "Error allocating string vector internal array: %s\n",
@@ -35,6 +36,44 @@ StringVector string_vector_create() {
 	}
 
 	return string_vector;
+}
+
+/*
+ * Returns the new size if the string vector can grow
+ */
+unsigned string_vector_new_size(StringVector string_vector) {
+
+	if (string_vector == NULL) {
+		fprintf(stderr,
+				"NULL string vector passed to sting_vector_can_grow()\n");
+		return 0;
+	}
+
+	unsigned cur_size = string_vector->size;
+	unsigned new_size = cur_size * __MEM_BLOCK_SIZE_MULTIPLIER_;
+
+	if (new_size > __MEM_BLOCK_SIZE_MAX_) {
+		return cur_size;
+	} else {
+		return new_size;
+	}
+}
+
+/*
+ * Returns true if the vector can grow by 1 element
+ */
+bool string_vector_can_grow(StringVector string_vector) {
+
+	if (string_vector == NULL) {
+		fpritnf(stderr, "NULL string vector passed for string_vector_can_grow\n");
+		return false;
+	}
+
+	if (string_vector_new_size(string_vector) > string_vector->size) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 /*
@@ -48,17 +87,17 @@ int string_vector_grow(StringVector string_vector) {
 	}
 
 	unsigned cur_size = string_vector->size;
-	unsigned new_size = cur_size * __MEM_BLOCK_SIZE_MULTIPLIER_;
+	unsigned new_size = string_vector_new_size(string_vector);
 
-	if (new_size > __MEM_BLOCK_SIZE_MAX_) {
-		fprintf(stderr,
-				"Cannot grow string_vector to size %d (maximum is %d)\n",
-				new_size, __MEM_BLOCK_SIZE_MAX_);
+	if (new_size <= cur_size) {
+		fprintf(stderr, "Cannot grow string_vector (maximum size is %d)\n",
+				__MEM_BLOCK_SIZE_MAX_);
 		return EXIT_FAILURE;
 	}
 
 	string_vector->vector = (char**) realloc(string_vector->vector,
 			new_size * sizeof(char*));
+
 	if (string_vector->vector == NULL) {
 		fprintf(stderr, "Error allocating %d bytes to the vector: %s\n",
 				new_size, strerror(errno));
@@ -96,7 +135,8 @@ int string_vector_add(StringVector string_vector, char *string) {
 	char *new_string = (char*) malloc(strlen(string) + 1);
 
 	if (new_string == NULL) {
-		fprintf(stderr, "Error allocating new string for string vector: %s\n", strerror(errno));
+		fprintf(stderr, "Error allocating new string for string vector: %s\n",
+				strerror(errno));
 		return EXIT_FAILURE;
 	}
 

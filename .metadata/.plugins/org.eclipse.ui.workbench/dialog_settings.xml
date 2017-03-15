@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="971" key="DIALOG_X_ORIGIN"/>
-		<item value="310" key="DIALOG_Y_ORIGIN"/>
+		<item value="928" key="DIALOG_X_ORIGIN"/>
+		<item value="351" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="-1" key="dialogHeight"/>
@@ -15,13 +15,6 @@
 		</list>
 		<list key="textArray">
 		</list>
-	</section>
-	<section name="InstallationDialogSettings">
-		<item value="702" key="DIALOG_WIDTH"/>
-		<item value="1|.SF NS Text|11.0|0|COCOA|1|.SFNSText" key="DIALOG_FONT_NAME"/>
-		<item value="652" key="DIALOG_HEIGHT"/>
-		<item value="43" key="DIALOG_X_ORIGIN"/>
-		<item value="-209" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="ImportExportAction">
 		<item value="org.eclipse.ui.wizards.import.ExternalProject" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>

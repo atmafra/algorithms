@@ -25,13 +25,13 @@ endif
 all: insertion_sort
 
 dependents:
-	-cd /Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms/chapter1/string_vector/Debug && $(MAKE) all
+	-cd /media/mafra/RAID\ 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug && $(MAKE) all
 
 # Tool invocations
-insertion_sort: $(OBJS) $(USER_OBJS) /Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms/chapter1/string_vector/Debug/libstring_vector.so
+insertion_sort: $(OBJS) $(USER_OBJS) /media/mafra/RAID\ 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug/libstring_vector.so
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross GCC Linker'
-	gcc -L"/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort" $(OBJS) $(USER_OBJS) $(LIBS)
+	gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -42,6 +42,6 @@ clean:
 
 .PHONY: all clean dependents
 .SECONDARY:
-/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms/chapter1/string_vector/Debug/libstring_vector.so:
+/media/mafra/RAID\ 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug/libstring_vector.so:
 
 -include ../makefile.targets

@@ -58,3 +58,161 @@ rm -rf  ./string_vector.o ./string_vector_large.o  ./string_vector.d ./string_ve
 20:53:13 **** Auto Build of configuration Debug for project insertion_sort ****
 make -j7 all 
 make: Nothing to be done for `all'.
+23:53:50 **** Clean-only build of configuration Debug for project string_vector ****
+make clean 
+rm -rf  ./string_vector.o ./string_vector_large.o  ./string_vector.d ./string_vector_large.d  libstring_vector.so
+ 
+23:53:50 **** Incremental Build of configuration Debug for project string_vector ****
+make all 
+Building file: ../string_vector.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -O3 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"string_vector.d" -MT"string_vector.o" -o "string_vector.o" "../string_vector.c"
+Finished building: ../string_vector.c
+ 
+Building file: ../string_vector_large.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -O3 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"string_vector_large.d" -MT"string_vector_large.o" -o "string_vector_large.o" "../string_vector_large.c"
+../string_vector_large.c: In function ‘string_vector_large_create’:
+../string_vector_large.c:22:5: warning: implicit declaration of function ‘strerror’ [-Wimplicit-function-declaration]
+subdir.mk:21: recipe for target 'string_vector_large.o' failed
+     strerror(errno));
+     ^
+../string_vector_large.c:21:19: warning: format ‘%s’ expects argument of type ‘char *’, but argument 3 has type ‘int’ [-Wformat=]
+   fprintf(stderr, "Error allocating large string vector: %s\n",
+                   ^
+../string_vector_large.c:32:19: warning: format ‘%s’ expects argument of type ‘char *’, but argument 3 has type ‘int’ [-Wformat=]
+   fprintf(stderr, "Error allocating large string vector blocks: %s\n", strerror(errno));
+                   ^
+../string_vector_large.c: In function ‘string_vector_grow’:
+../string_vector_large.c:50:33: error: expected expression before ‘;’ token
+  unsigned new_size = cur_size + ;
+                                 ^
+../string_vector_large.c:59:2: error: ‘string_vector’ undeclared (first use in this function)
+  string_vector->vector = (char**) realloc(string_vector->vector,
+  ^
+../string_vector_large.c:59:2: note: each undeclared identifier is reported only once for each function it appears in
+../string_vector_large.c:62:19: warning: format ‘%s’ expects argument of type ‘char *’, but argument 4 has type ‘int’ [-Wformat=]
+   fprintf(stderr, "Error allocating %d bytes to the vector: %s\n",
+                   ^
+../string_vector_large.c: In function ‘string_vector_large_add’:
+../string_vector_large.c:89:78: error: expected expression before ‘)’ token
+   string_vector_large->blocks = (StringVector*) realloc(string_vector_large, )
+                                                                              ^
+make: *** [string_vector_large.o] Error 1
+23:53:51 **** Clean-only build of configuration Debug for project insertion_sort ****
+make -j12 clean 
+rm -rf  ./insertion_sort.o  ./insertion_sort.d  insertion_sort
+ 
+23:53:51 **** Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building file: ../insertion_sort.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -I"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector" -O0 -g3 -p -pg -Wall -Wconversion -c -fmessage-length=0 -fPIC -MMD -MP -MF"insertion_sort.d" -MT"insertion_sort.o" -o "insertion_sort.o" "../insertion_sort.c"
+Finished building: ../insertion_sort.c
+ 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+00:19:06 **** Clean-only build of configuration Debug for project insertion_sort ****
+make -j12 clean 
+rm -rf  ./insertion_sort.o  ./insertion_sort.d  insertion_sort
+ 
+00:19:06 **** Clean-only build of configuration Debug for project string_vector ****
+make clean 
+rm -rf  ./string_vector.o ./string_vector_large.o  ./string_vector.d ./string_vector_large.d  libstring_vector.so
+ 
+00:19:07 **** Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building file: ../insertion_sort.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -I"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector" -O0 -g3 -p -pg -Wall -Wconversion -c -fmessage-length=0 -fPIC -MMD -MP -MF"insertion_sort.d" -MT"insertion_sort.o" -o "insertion_sort.o" "../insertion_sort.c"
+Finished building: ../insertion_sort.c
+ 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+00:24:22 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+01:13:44 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building file: ../insertion_sort.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -I"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector" -O0 -g3 -p -pg -Wall -Wconversion -c -fmessage-length=0 -fPIC -MMD -MP -MF"insertion_sort.d" -MT"insertion_sort.o" -o "insertion_sort.o" "../insertion_sort.c"
+Finished building: ../insertion_sort.c
+ 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+01:32:14 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+02:09:14 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+02:22:17 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+02:25:35 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+02:28:20 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
+02:32:13 **** Auto Build of configuration Debug for project insertion_sort ****
+make -j12 all 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+/usr/bin/ld: cannot find -lstring_vector
+makefile:32: recipe for target 'insertion_sort' failed
+collect2: error: ld returned 1 exit status
+make: *** [insertion_sort] Error 1
