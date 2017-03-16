@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
 		while ((j > 0)
 				&& (strcmp(string_vector_large_get(string_vector_large, j),
 						string_vector_large_get(string_vector_large, j - 1)) < 0)) {
-			string_vector_long_swap(string_vector_large, j, j - 1);
+			string_vector_large_swap(string_vector_large, j, j - 1);
 			j -= 1;
 		}
 

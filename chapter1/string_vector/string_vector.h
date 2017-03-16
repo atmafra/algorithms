@@ -44,15 +44,20 @@ bool string_vector_can_grow(StringVector string_vector);
  */
 unsigned string_vector_grow(StringVector string_vector);
 
-/*
- * Adds a new string to the vector
- */
-int string_vector_add(StringVector strVec, char *newString);
-
 /**
  * Gets the string at position
  */
-char *string_vector_get(StringVector strVec, unsigned position);
+char *string_vector_get(StringVector string_vector, unsigned position);
+
+/*
+ * Sets the string at position with a copy of the string
+ */
+int string_vector_set(StringVector string_vector, unsigned position, char *string);
+
+/*
+ * Adds a copy of the string to the vector
+ */
+int string_vector_add(StringVector string_vector, char *string);
 
 /**
  * Swaps the elements in two positions
