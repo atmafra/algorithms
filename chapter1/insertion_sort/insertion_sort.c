@@ -9,6 +9,7 @@
 #include <string.h>
 #include <errno.h>
 #include "string_vector.h"
+#include "string_vector_large.h"
 
 #ifndef __MAX_LINES_
 #define __MAX_LINES_ 100000
@@ -20,7 +21,7 @@
 
 char **list;
 
-StringVector read_input_file(char *file_name) {
+StringVectorLarge read_input_file(char *file_name) {
 
 	if (file_name == 0) {
 		fprintf(stderr, "Empty file name\n");
@@ -34,25 +35,25 @@ StringVector read_input_file(char *file_name) {
 		return NULL;
 	}
 
-	StringVector string_vector = string_vector_create();
+	StringVectorLarge string_vector_large = string_vector_large_create();
 
 	char buffer[__LINE_SIZE_];
 	int vector_add_status = EXIT_SUCCESS;
 
 	while ((fgets(buffer, __LINE_SIZE_, fp) != NULL) && (vector_add_status == EXIT_SUCCESS)) {
 		strtok(buffer, "\n");
-		if (string_vector_add(string_vector, buffer) != EXIT_SUCCESS) {
+		if (string_vector_large_add(string_vector_large, buffer) != EXIT_SUCCESS) {
 			fprintf(stderr, "Error adding element '%s' to string vector\n", buffer);
-			string_vector_free(string_vector);
+			string_vector_large_free(string_vector_large);
 			fclose(fp);
 			return NULL;
 		}
 	}
 
-	printf("Read %d lines\n", string_vector->num_elements);
+	printf("Read %ld lines\n", string_vector_large->num_elements);
 	fclose(fp);
 
-	return string_vector;
+	return string_vector_large;
 }
 
 int main(int argc, char *argv[]) {
@@ -67,15 +68,15 @@ int main(int argc, char *argv[]) {
 		return EXIT_FAILURE;
 	}
 
-	StringVector string_vector = read_input_file(argv[1]);
-	if (!string_vector) {
+	StringVectorLarge string_vector_large = read_input_file(argv[1]);
+	if (!string_vector_large) {
 		fprintf(stderr, "Error reading file '%s'\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	unsigned num_elements = string_vector->num_elements;
+	unsigned long num_elements = string_vector_large->num_elements;
 
 	/* insertion sort */
-	printf("Sorting %d elements\n", num_elements);
+	printf("Sorting %ld elements\n", num_elements);
 	fflush(stdout);
 	unsigned i, j;
 
@@ -84,9 +85,9 @@ int main(int argc, char *argv[]) {
 		j = i;
 
 		while ((j > 0)
-				&& (strcmp(string_vector_get(string_vector, j),
-						string_vector_get(string_vector, j - 1)) < 0)) {
-			string_vector_swap(string_vector, j, j - 1);
+				&& (strcmp(string_vector_large_get(string_vector_large, j),
+						string_vector_large_get(string_vector_large, j - 1)) < 0)) {
+			string_vector_long_swap(string_vector_large, j, j - 1);
 			j -= 1;
 		}
 
@@ -96,10 +97,10 @@ int main(int argc, char *argv[]) {
 	}
 
 	for (i = 0; i < num_elements; i++) {
-		printf("%s\n", string_vector_get(string_vector, i));
+		printf("%s\n", string_vector_large_get(string_vector_large, i));
 	}
 
-	string_vector_free(string_vector);
+	string_vector_large_free(string_vector_large);
 
 	return EXIT_SUCCESS;
 }

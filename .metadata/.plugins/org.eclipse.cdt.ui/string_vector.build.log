@@ -1,7 +1,15 @@
-20:53:13 **** Clean-only build of configuration Debug for project string_vector ****
-make clean 
-rm -rf  ./string_vector.o ./string_vector_large.o  ./string_vector.d ./string_vector_large.d  libstring_vector.so
+20:37:49 **** Incremental Build of configuration Debug for project string_vector ****
+make all 
+Building file: ../string_vector_large.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -O3 -g3 -Wall -c -fmessage-length=0 -fPIC -MMD -MP -MF"string_vector_large.d" -MT"string_vector_large.o" -o "string_vector_large.o" "../string_vector_large.c"
+Finished building: ../string_vector_large.c
+ 
+Building target: libstring_vector.so
+Invoking: Cross GCC Linker
+gcc -shared -o "libstring_vector.so"  ./string_vector.o ./string_vector_large.o   
+Finished building target: libstring_vector.so
  
 
-20:53:13 Build Finished (took 71ms)
+20:37:49 Build Finished (took 237ms)
 

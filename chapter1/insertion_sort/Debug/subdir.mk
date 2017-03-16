@@ -17,7 +17,7 @@ C_DEPS += \
 %.o: ../%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: Cross GCC Compiler'
-	gcc -std=c99 -I"/media/mafra/RAID 6.0TB/files/projetos/github/algorithms/chapter1/string_vector" -O0 -g3 -p -pg -Wall -Wconversion -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	gcc -std=c99 -I"/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms/chapter1/string_vector" -O0 -g3 -p -pg -Wall -Wconversion -c -fmessage-length=0 -fPIC -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

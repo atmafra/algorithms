@@ -65,7 +65,7 @@ unsigned string_vector_new_size(StringVector string_vector) {
 bool string_vector_can_grow(StringVector string_vector) {
 
 	if (string_vector == NULL) {
-		fpritnf(stderr, "NULL string vector passed for string_vector_can_grow\n");
+		fprintf(stderr, "NULL string vector passed for string_vector_can_grow\n");
 		return false;
 	}
 
@@ -78,12 +78,13 @@ bool string_vector_can_grow(StringVector string_vector) {
 
 /*
  * Grows the vector according to the specified parameters
+ * Returns the allocation growth
  */
-int string_vector_grow(StringVector string_vector) {
+unsigned string_vector_grow(StringVector string_vector) {
 
 	if (string_vector == NULL) {
 		fprintf(stderr, "NULL string vector passed to string_vector_grow()\n");
-		return EXIT_FAILURE;
+		return 0;
 	}
 
 	unsigned cur_size = string_vector->size;
@@ -92,7 +93,7 @@ int string_vector_grow(StringVector string_vector) {
 	if (new_size <= cur_size) {
 		fprintf(stderr, "Cannot grow string_vector (maximum size is %d)\n",
 				__MEM_BLOCK_SIZE_MAX_);
-		return EXIT_FAILURE;
+		return 0;
 	}
 
 	string_vector->vector = (char**) realloc(string_vector->vector,
@@ -101,11 +102,11 @@ int string_vector_grow(StringVector string_vector) {
 	if (string_vector->vector == NULL) {
 		fprintf(stderr, "Error allocating %d bytes to the vector: %s\n",
 				new_size, strerror(errno));
-		return EXIT_FAILURE;
+		return 0;
 	}
 
 	string_vector->size = new_size;
-	return EXIT_SUCCESS;
+	return new_size - cur_size;
 }
 
 /*
@@ -126,7 +127,7 @@ int string_vector_add(StringVector string_vector, char *string) {
 	if (string_vector->num_elements >= string_vector->size) {
 
 		// try to grow the string vector
-		if (string_vector_grow(string_vector) != EXIT_SUCCESS) {
+		if (string_vector_grow(string_vector) == 0) {
 			fprintf(stderr, "Unable to grow the string vector\n");
 			return EXIT_FAILURE;
 		}

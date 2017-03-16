@@ -1,6 +1,25 @@
-20:53:13 **** Auto Build of configuration Debug for project insertion_sort ****
+20:59:03 **** Auto Build of configuration Debug for project insertion_sort ****
 make -j7 all 
-make: Nothing to be done for `all'.
+Building file: ../insertion_sort.c
+Invoking: Cross GCC Compiler
+gcc -std=c99 -I"/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms/chapter1/string_vector" -O0 -g3 -p -pg -Wall -Wconversion -c -fmessage-length=0 -fPIC -MMD -MP -MF"insertion_sort.d" -MT"insertion_sort.o" -o "insertion_sort.o" "../insertion_sort.c"
+clang: warning: argument unused during compilation: '-p'
+../insertion_sort.c:90:4: warning: implicit declaration of function 'string_vector_long_swap' is invalid in C99 [-Wimplicit-function-declaration]
+                        string_vector_long_swap(string_vector_large, j, j - 1);
+                        ^
+1 warning generated.
+Finished building: ../insertion_sort.c
+ 
+Building target: insertion_sort
+Invoking: Cross GCC Linker
+gcc -L"/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms/chapter1/string_vector/Debug" -p -pg -o "insertion_sort"  ./insertion_sort.o   -lstring_vector
+clang: warning: argument unused during compilation: '-p'
+Undefined symbols for architecture x86_64:
+  "_string_vector_long_swap", referenced from:
+      _main in insertion_sort.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make: *** [insertion_sort] Error 1
 
-20:53:13 Build Finished (took 71ms)
+20:59:04 Build Finished (took 128ms)
 

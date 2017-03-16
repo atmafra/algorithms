@@ -39,7 +39,12 @@ StringVector string_vector_create();
  */
 bool string_vector_can_grow(StringVector string_vector);
 
-/**
+/*
+ * Grows the vector according to the specified parameters
+ */
+unsigned string_vector_grow(StringVector string_vector);
+
+/*
  * Adds a new string to the vector
  */
 int string_vector_add(StringVector strVec, char *newString);

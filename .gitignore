@@ -32,8 +32,12 @@
 *.dSYM/
 *.su
 
+# logs
+*.log
+
 # Eclipse
 *.d
 *.mk
 **/RemoteSystemsTempFiles
 **/Debug
+*.metadata/
