@@ -17,6 +17,7 @@ AS_TYPE_color=101,122,129
 CHARACTER_color=42,161,152
 JAVADOC_KEYWORD_color=211,1,2
 JAVADOC_LINK_color=211,1,2
+JAVADOC_LINK_color_bold=true
 JAVADOC_LINK_color_strikethrough=false
 JAVADOC_LINK_color_underline=false
 JAVADOC_TAG_color=211,1,2

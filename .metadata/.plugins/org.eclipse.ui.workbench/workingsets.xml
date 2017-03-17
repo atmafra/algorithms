@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1489762498543_2" label="algorithms" name="algorithms"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1489439385013_0" label="Window Working Set" name="Aggregate for window 1489439385013"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1489503380862_1" label="Window Working Set" name="Aggregate for window 1489423403765"/>
+<mruList name="algorithms"/>
 </workingSetManager>
