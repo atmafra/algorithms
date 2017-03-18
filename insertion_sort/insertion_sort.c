@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
-#include "string_vector.h"
 #include "string_vector_large.h"
 
 #ifndef __MAX_LINES_
@@ -33,7 +32,7 @@ StringVectorLarge read_input_file(char *file_name) {
 		return NULL;
 	}
 
-	StringVectorLarge string_vector_large = string_vector_large_create();
+	StringVectorLarge strvlg = strvlg_create();
 
 	char buffer[__LINE_SIZE_ ];
 	int vector_add_status = EXIT_SUCCESS;
@@ -43,17 +42,17 @@ StringVectorLarge read_input_file(char *file_name) {
 
 		strtok(buffer, "\n");
 
-		if (string_vector_large_add(string_vector_large, buffer) != EXIT_SUCCESS) {
+		if (strvlg_add(strvlg, buffer) != EXIT_SUCCESS) {
 			fprintf(stderr, "Error adding element '%s' to string vector\n",
 					buffer);
-			string_vector_large_free(string_vector_large);
+			strvlg_free(strvlg);
 			fclose(fp);
 			return NULL;
 		}
 	}
 
 	fclose(fp);
-	return string_vector_large;
+	return strvlg;
 }
 
 int main(int argc, char *argv[]) {
@@ -62,22 +61,20 @@ int main(int argc, char *argv[]) {
 
 	if (argc > 1) {
 		filename = argv[1];
-		//printf("Reading file '%s'\n", filename);
+		printf("Reading file '%s'\n", filename);
 	} else {
 		fprintf(stderr, "No input file name\n");
 		return EXIT_FAILURE;
 	}
 
-	StringVectorLarge string_vector_large = read_input_file(argv[1]);
+	StringVectorLarge strvlg = read_input_file(filename);
 
-	if (!string_vector_large) {
+	if (!strvlg) {
 		fprintf(stderr, "Error reading file '%s'\n", filename);
 		exit(EXIT_FAILURE);
 	}
 
-	unsigned long num_elements = string_vector_large->num_elements;
-	//string_vector_large_print(string_vector_large);
-	//exit(EXIT_SUCCESS);
+	unsigned long num_elements = strvlg->elements;
 
 	/* insertion sort */
 	//printf("\nSorting %lu elements\n", num_elements);
@@ -88,9 +85,8 @@ int main(int argc, char *argv[]) {
 		j = i;
 
 		while ((j > 0)
-				&& (strcmp(string_vector_large_get(string_vector_large, j),
-						string_vector_large_get(string_vector_large, j - 1)) < 0)) {
-			string_vector_large_swap(string_vector_large, j, j - 1);
+				&& (strcmp(strvlg_get(strvlg, j), strvlg_get(strvlg, j - 1)) < 0)) {
+			strvlg_swap(strvlg, j, j - 1);
 			j -= 1;
 		}
 
@@ -99,7 +95,7 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	string_vector_large_print(string_vector_large);
-	string_vector_large_free(string_vector_large);
+	strvlg_print(strvlg);
+	strvlg_free(strvlg);
 	return EXIT_SUCCESS;
 }

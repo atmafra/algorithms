@@ -1,5 +1,5 @@
 /*
- * string_vector_large.h
+ * strvlg.h
  *
  *  Created on: 14 de mar de 2017
  *      Author: alexandre.mafra
@@ -24,11 +24,11 @@
 
 typedef struct {
 
-	unsigned long num_elements;
+	unsigned long elements;
 	unsigned long size;
-	unsigned num_blocks;
-	unsigned allocated_blocks;
-	StringVector *blocks;
+	unsigned blocks;
+	unsigned blocks_allocated;
+	StringVector *vector;
 
 } StringVectorLargeType;
 
@@ -37,7 +37,7 @@ typedef StringVectorLargeType *StringVectorLarge;
 /*
  * Allocates a new StringVectorLarge
  */
-StringVectorLarge string_vector_large_create();
+StringVectorLarge strvlg_create();
 
 /*
  * Adds a new string to the vector
@@ -45,36 +45,36 @@ StringVectorLarge string_vector_large_create();
 /**
  * Gets the string at position
  */
-char *string_vector_large_get(StringVectorLarge string_vector_large, unsigned long position);
+char *strvlg_get(StringVectorLarge strvlg, unsigned long position);
 
 /*
  * Sets the string at position
  */
-int string_vector_large_set(StringVectorLarge string_vector_large, unsigned long position, char *string);
+int strvlg_set(StringVectorLarge strvlg, unsigned long position, char *string);
 
 /**
  * Swaps the elements in two positions
  */
-int string_vector_large_add(StringVectorLarge string_vector_large, char *new_string);
+int strvlg_add(StringVectorLarge strvlg, char *new_string);
 
 /*
  * Swaps the strings between two positions
  */
-int string_vector_large_swap(StringVectorLarge string_vector_large, unsigned long position1, unsigned long position2);
+int strvlg_swap(StringVectorLarge strvlg, unsigned long position1, unsigned long position2);
 
 /**
  * Frees all memory allocated
  */
-void string_vector_large_free(StringVectorLarge string_vector_large);
+void strvlg_free(StringVectorLarge strvlg);
 
 /*
  * Prints the status
  */
-void string_vector_large_print_status(StringVectorLarge string_vector_large);
+void strvlg_print_status(StringVectorLarge strvlg);
 
 /*
  * Prints the vector
  */
-void string_vector_large_print(StringVectorLarge string_vector_large);
+void strvlg_print(StringVectorLarge strvlg);
 
-#endif /* STRING_VECTOR_LARGE_H_ */
+#endif /* strvlg_H_ */
