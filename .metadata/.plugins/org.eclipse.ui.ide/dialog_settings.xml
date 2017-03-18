@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<list key="workingset_selection_history">
+		<item value="algorithms"/>
+	</list>
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
 		<item value="/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms"/>
 	</list>
 	<section name="CleanDialogSettings">
 		<item value="484" key="DIALOG_WIDTH"/>
+		<item value="false" key="BUILD_ALL"/>
 		<item value="true" key="TOGGLE_SELECTED"/>
-		<item value="354" key="DIALOG_HEIGHT"/>
+		<item value="423" key="DIALOG_HEIGHT"/>
 		<item value="1918" key="DIALOG_X_ORIGIN"/>
 		<item value="225" key="DIALOG_Y_ORIGIN"/>
+		<item value="true" key="BUILD_NOW"/>
 	</section>
 	<section name="ExternalProjectImportWizard">
 		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>

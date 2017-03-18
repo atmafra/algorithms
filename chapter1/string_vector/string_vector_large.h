@@ -23,14 +23,16 @@
 #endif
 
 typedef struct {
+
 	unsigned long num_elements;
 	unsigned long size;
 	unsigned num_blocks;
 	unsigned allocated_blocks;
 	StringVector *blocks;
-} string_vector_large_struct;
 
-typedef string_vector_large_struct *StringVectorLarge;
+} StringVectorLargeType;
+
+typedef StringVectorLargeType *StringVectorLarge;
 
 /*
  * Allocates a new StringVectorLarge
@@ -69,5 +71,10 @@ void string_vector_large_free(StringVectorLarge string_vector_large);
  * Prints the status
  */
 void string_vector_large_print_status(StringVectorLarge string_vector_large);
+
+/*
+ * Prints the vector
+ */
+void string_vector_large_print(StringVectorLarge string_vector_large);
 
 #endif /* STRING_VECTOR_LARGE_H_ */

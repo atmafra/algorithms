@@ -41,4 +41,5 @@
 *.mk
 **/RemoteSystemsTempFiles
 **/Debug
-**.metadata/
+**/.history/
+**.logging*

@@ -22,12 +22,14 @@
 #endif
 
 typedef struct {
+
 	unsigned num_elements;
 	unsigned size;
 	char **vector;
-} string_vector_struct;
 
-typedef string_vector_struct *StringVector;
+} StringVectorType;
+
+typedef StringVectorType *StringVector;
 
 /**
  * Creates a new StringVector
@@ -62,11 +64,16 @@ int string_vector_add(StringVector string_vector, char *string);
 /**
  * Swaps the elements in two positions
  */
-int string_vector_swap(StringVector strVec, unsigned position1, unsigned position2);
+int string_vector_swap(StringVector string_vector, unsigned position1, unsigned position2);
 
 /**
  * Frees all memory allocated to the StringVector
  */
-void string_vector_free(StringVector strVec);
+void string_vector_free(StringVector string_vector);
+
+/*
+ * Prints the vector status
+ */
+void string_vector_print_status(StringVector string_vector);
 
 #endif /* STRING_VECTOR_H_ */

@@ -30,62 +30,43 @@ int string_vector_large_allocate_first_block(StringVectorLarge string_vector_lar
 	// allocates the first block (StringVector)
 	string_vector_large->blocks[0] = string_vector_create();
 
-	printf("Soon after create first block:\n");
-	string_vector_large_print_status(string_vector_large);
-
 	if (string_vector_large->blocks[0] == NULL) {
 		fprintf(stderr, "Error allocating first block: %s\n", strerror(errno));
 		string_vector_large_free(string_vector_large);
 		return EXIT_FAILURE;
 	}
 
-	printf("Soon after create first block 2:\n");
-	string_vector_large_print_status(string_vector_large);
-
-	//string_vector_large->allocated_blocks = __NUM_BLOCKS_START_;
-	string_vector_large->num_blocks = 1;
 	string_vector_large->size = string_vector_large->blocks[0]->size;
-
-	printf("Inside create first block:\n");
-	string_vector_large_print_status(string_vector_large);
+	string_vector_large->num_blocks = 1;
 	return EXIT_SUCCESS;
 }
 
 StringVectorLarge string_vector_large_create() {
 
-	StringVectorLarge string_vector_large = (StringVectorLarge) malloc(sizeof(StringVectorLarge));
+	StringVectorLarge string_vector_large = (StringVectorLarge) malloc(sizeof(StringVectorLargeType));
 
 	if (string_vector_large == NULL) {
 		fprintf(stderr, "Error allocating large string vector: %s\n", strerror(errno));
 		return NULL;
 	}
 
+	string_vector_large->allocated_blocks = 0;
+	string_vector_large->num_blocks = 0;
+	string_vector_large->size = 0;
 	string_vector_large->num_elements = 0;
+	string_vector_large->blocks = NULL;
 
 	// allocates the array of blocks
-	if (__NUM_BLOCKS_START_ == 0) {
-
-		string_vector_large->blocks = NULL;
-		string_vector_large->allocated_blocks = 0;
-		string_vector_large->num_blocks = 0;
-		string_vector_large->size = 0;
-
-	} else {
-
+	if (__NUM_BLOCKS_START_ > 0) {
 		if (string_vector_large_allocate_first_block(string_vector_large) != EXIT_SUCCESS) {
 			return NULL;
 		}
 	}
 
-	printf("After create:\n");
-	string_vector_large_print_status(string_vector_large);
 	return string_vector_large;
 }
 
 int string_vector_large_check_position(StringVectorLarge string_vector_large, unsigned long position) {
-
-	printf("Checking position %ld\n", position);
-	fflush(stdout);
 
 	if (string_vector_large == NULL) {
 		fprintf(stderr, "NULL string_vector_large at string_vector_large_check_position\n");
@@ -103,19 +84,22 @@ int string_vector_large_check_position(StringVectorLarge string_vector_large, un
 
 StringVector string_vector_large_get_block(StringVectorLarge string_vector_large, unsigned long position) {
 
-	if (string_vector_large_check_position(string_vector_large, position) != EXIT_SUCCESS) {
-		fprintf(stderr, "Error getting position's block\n");
-		return NULL;
-	}
-
 	unsigned block_index = position / __MEM_BLOCK_SIZE_MAX_;
-	printf("string_vector_large->blocks: %p\n", string_vector_large->blocks);
-	printf("string_vector_large->blocks[%d]: %p\n", block_index, string_vector_large->blocks[block_index]);
 	return string_vector_large->blocks[block_index];
 }
 
 StringVector string_vector_large_get_current_block(StringVectorLarge string_vector_large) {
-	return string_vector_large_get_block(string_vector_large, string_vector_large->num_elements);
+
+	if (string_vector_large->size == 0) {
+		return NULL;
+	}
+
+	if (string_vector_large->num_elements == 0) {
+		return string_vector_large_get_block(string_vector_large, 0);
+	}
+
+	unsigned long current_position = string_vector_large->num_elements - 1;
+	return string_vector_large_get_block(string_vector_large, current_position);
 }
 
 int string_vector_large_allocate_block(StringVectorLarge string_vector_large) {
@@ -130,6 +114,7 @@ int string_vector_large_allocate_block(StringVectorLarge string_vector_large) {
 
 		unsigned allocated_blocks_cur = string_vector_large->num_blocks;
 		unsigned allocated_blocks_new = allocated_blocks_cur + __NUM_BLOCKS_INCREMENT_;
+
 		string_vector_large->blocks = (StringVector*) realloc(string_vector_large->blocks,
 				allocated_blocks_new * sizeof(StringVector));
 
@@ -149,6 +134,7 @@ int string_vector_large_allocate_block(StringVectorLarge string_vector_large) {
 	}
 
 	string_vector_large->blocks[string_vector_large->num_blocks] = string_vector_new;
+	string_vector_large->size += string_vector_new->size;
 	string_vector_large->num_blocks++;
 
 	return EXIT_SUCCESS;
@@ -176,7 +162,7 @@ int string_vector_large_grow(StringVectorLarge string_vector_large) {
 	}
 
 	// tries to grow the current block
-	if (string_vector_can_grow(string_vector_cur)) {
+	if (string_vector_can_grow(string_vector_cur) == true) {
 
 		unsigned growth = string_vector_grow(string_vector_cur);
 		if (growth == 0) {
@@ -207,7 +193,7 @@ char *string_vector_large_get(StringVectorLarge string_vector_large, unsigned lo
 	}
 
 	// gets the string at the position in the block
-	unsigned element_index = position % __MEM_BLOCK_SIZE_MAX_ - 1;
+	unsigned element_index = position % __MEM_BLOCK_SIZE_MAX_;
 	return string_vector_get(string_vector_pos, element_index);
 }
 
@@ -221,7 +207,7 @@ int string_vector_large_set(StringVectorLarge string_vector_large, unsigned long
 	}
 
 	// gets the string at the position in the block
-	unsigned element_index = position % __MEM_BLOCK_SIZE_MAX_ - 1;
+	unsigned element_index = position % __MEM_BLOCK_SIZE_MAX_;
 	return string_vector_set(string_vector_pos, element_index, string);
 }
 
@@ -232,22 +218,16 @@ int string_vector_large_add(StringVectorLarge string_vector_large, char *string)
 		return EXIT_FAILURE;
 	}
 
-	printf("elements: %ld; size: %ld\n", string_vector_large->num_elements, string_vector_large->size);
-	fflush(stdout);
-
 	// checks if vector is full
 	if (string_vector_large->num_elements >= string_vector_large->size) {
-		printf("trying to grow large string vector\n");
 		if (string_vector_large_grow(string_vector_large) != EXIT_SUCCESS) {
 			fprintf(stderr, "Error growing large string vector");
 			return EXIT_FAILURE;
 		}
-		printf("large string vector grow to %ld bytes\n", string_vector_large->size);
-		fflush(stdout);
 	}
 
 	// adds the string to the current block
-	StringVector string_vector_cur = string_vector_large_get_current_block(string_vector_large);
+	StringVector string_vector_cur = string_vector_large_get_block(string_vector_large, string_vector_large->num_elements);
 
 	if (string_vector_cur == NULL) {
 		fprintf(stderr, "Error getting current block in large string vector\n");
@@ -259,6 +239,7 @@ int string_vector_large_add(StringVectorLarge string_vector_large, char *string)
 		return EXIT_FAILURE;
 	}
 
+	string_vector_large->num_elements++;
 	return EXIT_SUCCESS;
 }
 
@@ -309,9 +290,23 @@ void string_vector_large_print_status(StringVectorLarge string_vector_large) {
 
 	printf("string_vector_large: %p\n", string_vector_large);
 	printf("blocks pointer     : %p\n", string_vector_large->blocks);
-	printf("first block pointer: %p\n", string_vector_large->blocks[0]);
+	printf("first block        : %p\n", string_vector_large->blocks[0]);
+	printf("current block      : %p\n", string_vector_large_get_current_block(string_vector_large));
 	printf("allocated blocks   : %d\n", string_vector_large->allocated_blocks);
 	printf("used blocks        : %d\n", string_vector_large->num_blocks);
 	printf("allocated size     : %ld\n", string_vector_large->size);
 	printf("used size          : %ld\n", string_vector_large->num_elements);
+}
+
+void string_vector_large_print(StringVectorLarge string_vector_large) {
+
+	if (string_vector_large == NULL) {
+		printf("NULL large string vector at print()\n");
+		return;
+	}
+
+	for (int i = 0; i < string_vector_large->num_elements; i++) {
+		char *string = string_vector_large_get(string_vector_large, i);
+		printf("%s\n", string);
+	}
 }

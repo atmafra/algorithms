@@ -133,7 +133,7 @@ int string_vector_set(StringVector string_vector, unsigned position, char *strin
 		return EXIT_FAILURE;
 	}
 
-	if (position >= string_vector->num_elements) {
+	if (position > string_vector->num_elements) {
 		fprintf(stderr, "Array index out of bounds: %d (elements: %d)\n", position, string_vector->num_elements);
 		return EXIT_FAILURE;
 	}
@@ -241,4 +241,16 @@ void string_vector_free(StringVector string_vector) {
 
 	// frees the instance
 	free(string_vector);
+}
+
+void string_vector_print_status(StringVector string_vector) {
+
+	printf("address : %p\n", string_vector);
+
+	if (string_vector == NULL) {
+		printf("NULL string vector passed at print_status()\n");
+		return;
+	}
+	printf("size    : %d\n", string_vector->size);
+	printf("elements: %d\n", string_vector->num_elements);
 }
