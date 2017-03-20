@@ -7,19 +7,20 @@
 		<item value="/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms"/>
 	</list>
 	<section name="CleanDialogSettings">
-		<item value="484" key="DIALOG_WIDTH"/>
+		<item value="644" key="DIALOG_WIDTH"/>
 		<item value="false" key="BUILD_ALL"/>
-		<item value="true" key="TOGGLE_SELECTED"/>
-		<item value="423" key="DIALOG_HEIGHT"/>
-		<item value="1918" key="DIALOG_X_ORIGIN"/>
-		<item value="225" key="DIALOG_Y_ORIGIN"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
+		<item value="464" key="DIALOG_HEIGHT"/>
+		<item value="846" key="DIALOG_X_ORIGIN"/>
+		<item value="304" key="DIALOG_Y_ORIGIN"/>
 		<item value="true" key="BUILD_NOW"/>
 	</section>
 	<section name="ExternalProjectImportWizard">
 		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
-		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/media/mafra/RAID 6.0TB/files/projetos/github/algorithms"/>
 			<item value="/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

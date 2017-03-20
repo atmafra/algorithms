@@ -18,41 +18,36 @@
 #define __LINE_SIZE_ 1000
 #endif
 
-StringVectorLarge read_input_file(char *file_name) {
+int read_input_file(char *file_name, StringVectorLarge strvlg, unsigned initial_blocks) {
 
 	if (file_name == 0) {
 		fprintf(stderr, "Empty file name\n");
-		return NULL;
+		return EXIT_FAILURE;
 	}
 
 	FILE *fp = fopen(file_name, "r");
 
 	if (fp == NULL) {
-		fprintf(stderr, "Error reading file\n");
-		return NULL;
+		fprintf(stderr, "Error opening file '%s' for reading: %s\n", file_name, strerror(errno));
+		return EXIT_FAILURE;
 	}
-
-	StringVectorLarge strvlg = strvlg_create();
 
 	char buffer[__LINE_SIZE_ ];
 	int vector_add_status = EXIT_SUCCESS;
 
-	while ((fgets(buffer, __LINE_SIZE_, fp) != NULL)
-			&& (vector_add_status == EXIT_SUCCESS)) {
+	while ((fgets(buffer, __LINE_SIZE_, fp) != NULL) && (vector_add_status == EXIT_SUCCESS)) {
 
 		strtok(buffer, "\n");
 
-		if (strvlg_add(strvlg, buffer) != EXIT_SUCCESS) {
-			fprintf(stderr, "Error adding element '%s' to string vector\n",
-					buffer);
-			strvlg_free(strvlg);
+		if (strvlg_add(strvlg, buffer, initial_blocks) != EXIT_SUCCESS) {
+			fprintf(stderr, "Error adding element '%s' to string vector\n", buffer);
 			fclose(fp);
-			return NULL;
+			return EXIT_FAILURE;
 		}
 	}
 
 	fclose(fp);
-	return strvlg;
+	return EXIT_SUCCESS;
 }
 
 int main(int argc, char *argv[]) {
@@ -67,10 +62,18 @@ int main(int argc, char *argv[]) {
 		return EXIT_FAILURE;
 	}
 
-	StringVectorLarge strvlg = read_input_file(filename);
+	StringVectorLarge strvlg = strvlg_create(strvec_size_initial_default, strvec_size_multiplier_default,
+			strvec_size_increments_max_default, strvlg_blocks_initial_default, strvlg_blocks_increment_default,
+			strvlg_blocks_increments_max_default);
 
-	if (!strvlg) {
-		fprintf(stderr, "Error reading file '%s'\n", filename);
+	if (strvlg == NULL) {
+		fprintf(stderr, "Error creating large string vector\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if (read_input_file(filename, strvlg, strvlg_blocks_initial_default) != EXIT_SUCCESS) {
+		fprintf(stderr, "Error reading input file\n");
+		strvlg_free(strvlg);
 		exit(EXIT_FAILURE);
 	}
 
@@ -84,8 +87,7 @@ int main(int argc, char *argv[]) {
 
 		j = i;
 
-		while ((j > 0)
-				&& (strcmp(strvlg_get(strvlg, j), strvlg_get(strvlg, j - 1)) < 0)) {
+		while ((j > 0) && (strcmp(strvlg_get(strvlg, j), strvlg_get(strvlg, j - 1)) < 0)) {
 			strvlg_swap(strvlg, j, j - 1);
 			j -= 1;
 		}

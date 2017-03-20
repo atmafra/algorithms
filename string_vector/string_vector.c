@@ -12,6 +12,22 @@
 #include <math.h>
 #include "string_vector.h"
 
+#ifndef __STRVEC_SIZE_INITIAL_DEFAULT_
+#define __STRVEC_SIZE_INITIAL_DEFAULT_ 16
+#endif
+
+#ifndef __STRVEC_SIZE_MULTIPLIER_DEFAULT_
+#define __STRVEC_SIZE_MULTIPLIER_DEFAULT_ 2
+#endif
+
+#ifndef __STRVEC_SIZE_INCREMENTS_MAX_DEFAULT_
+#define __STRVEC_SIZE_INCREMENTS_MAX_DEFAULT_ 12
+#endif
+
+#ifndef __STRVEC_SIZE_MAX_
+#define __STRVEC_SIZE_MAX_ 65536
+#endif
+
 const unsigned strvec_size_initial_default = __STRVEC_SIZE_INITIAL_DEFAULT_;
 const unsigned strvec_size_multiplier_default = __STRVEC_SIZE_MULTIPLIER_DEFAULT_;
 const unsigned strvec_size_increments_max_default = __STRVEC_SIZE_INCREMENTS_MAX_DEFAULT_;

@@ -10,22 +10,6 @@
 #ifndef STRING_VECTOR_H_
 #define STRING_VECTOR_H_
 
-#ifndef __STRVEC_SIZE_INITIAL_DEFAULT_
-#define __STRVEC_SIZE_INITIAL_DEFAULT_ 16
-#endif
-
-#ifndef __STRVEC_SIZE_MULTIPLIER_DEFAULT_
-#define __STRVEC_SIZE_MULTIPLIER_DEFAULT_ 2
-#endif
-
-#ifndef __STRVEC_SIZE_INCREMENTS_MAX_DEFAULT_
-#define __STRVEC_SIZE_INCREMENTS_MAX_DEFAULT_ 12
-#endif
-
-#ifndef __STRVEC_SIZE_MAX_
-#define __STRVEC_SIZE_MAX_ 65536
-#endif
-
 typedef struct {
 
 	unsigned elements;
@@ -48,17 +32,25 @@ extern const unsigned strvec_size_increments_max_default;
 extern const unsigned strvec_size_max;
 
 /**
- * Creates a new StringVector with size parameters
+ * Creates a new string vector with given size parameters
+ * @param initial_size initial vector size
+ * @param size_multiplier size multiplier, every time the vector has to grow
+ * @param max_size_increments maximum number of size increments
+ * @return new string vector
  */
-StringVector strvec_create(unsigned initial_size, unsigned size_multiplier, unsigned max_size_increments);
+StringVector strvec_create(unsigned initial_size, unsigned size_multiplier,
+		unsigned max_size_increments);
 
 /**
- * Creates a new StringVector
+ * Creates a new StringVector with the default size parameters
+ * @return new string vector
  */
 StringVector strvec_create_default();
 
 /**
- * Returns true if the vector can grow by 1 element
+ * Checks if the vector can grow by at least 1 element
+ * @param strvec string vector
+ * @return true/false
  */
 bool strvec_can_grow(StringVector strvec);
 
