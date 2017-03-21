@@ -17,11 +17,11 @@
 	</section>
 	<section name="ExternalProjectImportWizard">
 		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
-		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="/media/mafra/RAID 6.0TB/files/projetos/github/algorithms"/>
 			<item value="/Users/alexandre.mafra/Documents/users/mafra/projetos/algorithms"/>
+			<item value="/media/mafra/RAID 6.0TB/files/projetos/github/algorithms"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
