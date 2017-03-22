@@ -8,7 +8,11 @@
 #ifndef STRINGDISTANCE_H_
 #define STRINGDISTANCE_H_
 
+#include <iostream>
 #include <string>
+#include <sstream>
+#include <iterator>
+#include <vector>
 
 namespace stringdistance {
 
@@ -16,6 +20,7 @@ class StringDistance {
 
 protected:
 	std::string s1, s2;
+	std::vector<std::string> s1Tokens, s2Tokens;
 
 public:
 	StringDistance(std::string s1, std::string s2);

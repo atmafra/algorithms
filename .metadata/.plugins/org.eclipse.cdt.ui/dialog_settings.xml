@@ -4,16 +4,26 @@
 	<item value="0" key="org.eclipse.cdt.uiformatter_pagemodify_dialog.last_focus"/>
 	<item value="154" key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_y"/>
 	<item value="0" key="org.eclipse.cdt.uiformatter_page.white_space_tab_page.node"/>
-	<item value="Default C source template" key="LastUsedSourceTemplate"/>
+	<item value="Default C++ source template" key="LastUsedSourceTemplate"/>
 	<item value="true" key="ProjectSelectionDialog.show_all"/>
 	<item value="Default C header template" key="LastUsedHeaderTemplate"/>
 	<item value="43" key="org.eclipse.cdt.uiformatter_page.white_space.c_view.inner"/>
 	<item value="-1" key="formatter_page.modify_dialog_tab_page.last_focus_index"/>
 	<item value="2" key="org.eclipse.cdt.uiformatter_page.line_wrapping_tab_page.last_category_index"/>
-	<item value="m" key="org.eclipse.cdt.utils.ui.controls.FileListControl"/>
+	<item value="${workspace_loc:/string-distance}" key="org.eclipse.cdt.utils.ui.controls.FileListControl"/>
 	<item value="1495" key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_width"/>
 	<item value="738" key="org.eclipse.cdt.uiformatter_pagemodify_dialog.preferred_height"/>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
+	</section>
+	<section name="NewClassWizardPage">
+		<item value="true" key="stubSelected1"/>
+		<item value="false" key="stubVirtual1"/>
+		<item value="true" key="namespaceSelected"/>
+		<item value="false" key="stubInline0"/>
+		<item value="false" key="stubInline1"/>
+		<item value="stringdistance" key="namespace"/>
+		<item value="false" key="testFileSelected"/>
+		<item value="true" key="stubSelected0"/>
 	</section>
 	<section name="RenameInformationPopup">
 	</section>
@@ -21,7 +31,25 @@
 	</section>
 	<section name="OptionalMessageDialog.hide.">
 		<item value="0" key="askReindex.detail"/>
+		<item value="true" key="askReindex"/>
 	</section>
 	<section name="completion_proposal_size">
+	</section>
+	<section name="org.eclipse.cdt.internal.ui.wizards.classwizard.NewBaseClassSelectionDialogSettings">
+		<item value="false" key="show_enums"/>
+		<item value="false" key="show_unions"/>
+		<item value="false" key="show_macros"/>
+		<item value="true" key="show_classes"/>
+		<item value="false" key="show_functions"/>
+		<item value="true" key="show_lowlevel"/>
+		<item value="false" key="show_namespaces"/>
+		<item value="false" key="show_enumerators"/>
+		<item value="true" key="show_structs"/>
+		<item value="1048" key="x"/>
+		<item value="465" key="width"/>
+		<item value="104" key="y"/>
+		<item value="false" key="show_typedefs"/>
+		<item value="false" key="show_variables"/>
+		<item value="772" key="height"/>
 	</section>
 </section>
